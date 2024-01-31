@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+:root {
+    --main: ;
+    --secondary: ;
+}
+
+.fields {
+    width: 902px;
+    height: 900px;
+    border: 1px solid black;
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fields div {
+    width: 30px;
+    height: 30px;
+}
+
+div .color {
+    background-color: red;
+}
+
+.teleport {
+    background-color: blue;
+}
+
+.character {
+    background-color: green;
+    border-radius: 25px;
+}
