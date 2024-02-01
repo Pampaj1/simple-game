@@ -1,5 +1,5 @@
 const fieldsBox = document.querySelector('.fields');
-const tab = [218, 219, 220, 198, 177, 156];
+const tab = [270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299];
 const width = 30;
 
 // Making a grid
@@ -46,22 +46,56 @@ function teleport1() {
 }
 
 
-// CHARCTER MOVEMENT
+// SHOOTING SESION
+// pozycja postaci, kierunek strzalu, nowa klasa dla strzalu, to ze strzal zmienia odpowiednio id w czasie
+function shooting(direction, newId) {
+  let bulletPosition = '';
+  console.log(direction)
+
+  switch (direction) {
+    case 'left':
+      bulletPosition = Number(newId - 1);
+      break;
+    case 'right':
+      bulletPosition = Number(newId + 1);
+      break;
+    case 'up':
+      bulletPosition = Number(newId - 30);
+      break;
+    case 'down':
+      bulletPosition = Number(newId + 30);
+      break; 
+  }  
+
+//squares[bulletPosition].classList.add('bullet');
+}
+
+
+// CHARACTER MOVEMENT
 function charMove(e) {
   let newId = currentCharId;
-  
+  let direction;
+
   switch (e.key) {
     case 'ArrowLeft':
       if (newId % width !==0) newId -= 1;
+      squares[newId].classList.add('left');
+      direction = 'left';
       break;
     case 'ArrowRight':
       if (newId % width < width -1) newId += 1;
+      direction = 'right';
       break;
     case 'ArrowUp':
       if (newId >= 30) newId -= 30;
+      direction = 'up';
       break;
     case 'ArrowDown':
       if (newId < 870) newId += 30;
+      direction = 'down';
+      break;
+    case ' ':
+      shooting(direction, newId)
       break;
   }
 
@@ -73,7 +107,8 @@ function charMove(e) {
   if (newId == teleport[1]) {
     teleport1()
     return;
-  } 
+  }
+  console.log(direction)
   squares[currentCharId].classList.remove('character');
   squares[currentCharId].removeAttribute('class');
   currentCharId = newId;

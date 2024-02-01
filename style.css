@@ -1,40 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto Mono', monospace;
-}
-
-:root {
-    --main: ;
-    --secondary: ;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .fields {
-    width: 902px;
-    height: 900px;
-    border: 1px solid black;
-    margin: 20px auto 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: 902px;
+  height: 900px;
+  border: 1px solid black;
+  margin: 20px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .fields div {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 div .color {
-    background-color: red;
+  background-image: url('images/Brick.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .teleport {
-    background-color: blue;
+  background-color: blue;
 }
 
 .character {
-    background-color: green;
-    border-radius: 25px;
+  background-image: url('images/character.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+}
+
+.character.left {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.bullet {
+  background-color: yellow;
 }
