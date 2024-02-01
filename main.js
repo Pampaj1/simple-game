@@ -49,8 +49,7 @@ function teleport1() {
 // SHOOTING SESION
 // pozycja postaci, kierunek strzalu, nowa klasa dla strzalu, to ze strzal zmienia odpowiednio id w czasie
 function shooting(direction, newId) {
-  let bulletPosition = '';
-  console.log(direction)
+  let bulletPosition = Number('');
 
   switch (direction) {
     case 'left':
@@ -65,21 +64,26 @@ function shooting(direction, newId) {
     case 'down':
       bulletPosition = Number(newId + 30);
       break; 
-  }  
+  } 
+  squares[bulletPosition].classList.remove('bullet')
+  squares[bulletPosition].classList.add('bullet')
 
-//squares[bulletPosition].classList.add('bullet');
+  setTimeout(() => {
+    squares[bulletPosition].classList.remove('bullet')
+  }, 1000)
+
 }
 
+let direction;
 
 // CHARACTER MOVEMENT
 function charMove(e) {
   let newId = currentCharId;
-  let direction;
 
   switch (e.key) {
     case 'ArrowLeft':
       if (newId % width !==0) newId -= 1;
-      squares[newId].classList.add('left');
+      //squares[newId].classList.add('left');
       direction = 'left';
       break;
     case 'ArrowRight':
@@ -108,7 +112,6 @@ function charMove(e) {
     teleport1()
     return;
   }
-  console.log(direction)
   squares[currentCharId].classList.remove('character');
   squares[currentCharId].removeAttribute('class');
   currentCharId = newId;
