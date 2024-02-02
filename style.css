@@ -47,6 +47,6 @@ div .color {
   transform: scaleX(-1);
 }
 
-.bullet {
+div .bullet {
   background-color: yellow;
 }

@@ -94,13 +94,12 @@ function shooting(direction, newId) {
     }
     squares[bulletId].classList.add('bullet')
 
-    if (currentTime >= endTime || squares[bulletId].classList == 'color') {
+    if (currentTime >= endTime) {
       clearInterval(bulletmove);
       squares[bulletId].classList.remove('bullet')
       squares[bulletId].removeAttribute('class')
     }
-
-  }, 100)
+  }, 50)
 }
 
 
@@ -111,7 +110,7 @@ function charMove(e) {
 
   switch (e.key) {
     case 'ArrowLeft':
-      if (newId % width !==0) newId -= 1;
+      if (newId % width !== 0) newId -= 1;
       direction = 'left';
       break;
     case 'ArrowRight':
