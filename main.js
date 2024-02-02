@@ -48,33 +48,40 @@ function teleport1() {
 
 // SHOOTING SESION
 // pozycja postaci, kierunek strzalu, nowa klasa dla strzalu, to ze strzal zmienia odpowiednio id w czasie
-function shooting(direction, newId) {
-  let bulletPosition = Number('');
 
+let direction = 'right';
+
+function shooting(direction, newId) {
+
+let bulletId = newId;
+
+setInterval(() => {
   switch (direction) {
     case 'left':
-      bulletPosition = Number(newId - 1);
+      bulletId -= 1;
       break;
     case 'right':
-      bulletPosition = Number(newId + 1);
+      bulletId += 1;
       break;
     case 'up':
-      bulletPosition = Number(newId - 30);
+      bulletId -= 30;
       break;
     case 'down':
-      bulletPosition = Number(newId + 30);
+      bulletId += 30;
       break; 
-  } 
-  squares[bulletPosition].classList.remove('bullet')
-  squares[bulletPosition].classList.add('bullet')
-
+  }
+  squares[bulletId].classList.remove('bullet')
+  squares[bulletId].removeAttribute('class');
+  
+  squares[bulletId].classList.add('bullet')
+}, 100)
+  
   setTimeout(() => {
-    squares[bulletPosition].classList.remove('bullet')
-  }, 1000)
-
+    squares[bulletId].classList.remove('bullet')
+  }, 100)
 }
 
-let direction;
+
 
 // CHARACTER MOVEMENT
 function charMove(e) {
@@ -83,7 +90,6 @@ function charMove(e) {
   switch (e.key) {
     case 'ArrowLeft':
       if (newId % width !==0) newId -= 1;
-      //squares[newId].classList.add('left');
       direction = 'left';
       break;
     case 'ArrowRight':
