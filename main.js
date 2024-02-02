@@ -53,31 +53,53 @@ let direction = 'right';
 
 function shooting(direction, newId) {
 
-let bulletId = newId;
-
-setInterval(() => {
+  let bulletId = newId;
+  let bulletDire = '';
+ 
   switch (direction) {
     case 'left':
-      bulletId -= 1;
+      if (bulletId % width !==0) bulletId -= 1;
+      bulletDire = 'x';
       break;
     case 'right':
       bulletId += 1;
+      bulletDire = 'y';
       break;
     case 'up':
       bulletId -= 30;
+      bulletDire = 'z';
       break;
     case 'down':
       bulletId += 30;
+      bulletDire = 'c';
       break; 
   }
-  squares[bulletId].classList.remove('bullet')
-  squares[bulletId].removeAttribute('class');
-  
-  squares[bulletId].classList.add('bullet')
-}, 100)
-  
-  setTimeout(() => {
+
+  const startTime = new Date().getTime();
+  const bulletmove = setInterval(() => {
+
+    const currentTime = new Date().getTime();
+    const endTime = startTime + 1000;
+
     squares[bulletId].classList.remove('bullet')
+    squares[bulletId].removeAttribute('class')
+    if (bulletDire == 'x') {
+      bulletId -= 1;
+    } else if (bulletDire == 'y') {
+      bulletId += 1;
+    } else if (bulletDire == 'z') {
+      bulletId -= 30;
+    } else {
+      bulletId += 30;
+    }
+    squares[bulletId].classList.add('bullet')
+
+    if (currentTime >= endTime || squares[bulletId].classList == 'color') {
+      clearInterval(bulletmove);
+      squares[bulletId].classList.remove('bullet')
+      squares[bulletId].removeAttribute('class')
+    }
+
   }, 100)
 }
 
