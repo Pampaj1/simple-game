@@ -1,5 +1,5 @@
 const fieldsBox = document.querySelector('.fields');
-const tab = [270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299];
+const tab = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 60, 90, 120, 150, 180, 210, 240, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 330, 360, 390, 420, 450, 480, 510, 540, 570, 600, 630, 660, 690, 720, 750, 780, 810, 840, 870, 59, 89, 119, 149, 179, 209, 239, 269, 329, 359, 389, 419, 479, 509, 539, 569, 599, 629, 659, 689, 719, 749, 779, 809, 839, 869, 899, 871, 872, 873, 874, 875, 876, 877, 878, 879, 880, 881, 882, 883, 884, 885, 886, 887, 888, 889, 890, 891, 892, 893, 894, 895, 896, 897, 898];
 const width = 30;
 
 // Making a grid
@@ -18,7 +18,7 @@ function draw() {
 }
 
 // Starting positon for the character
-let currentCharId = 500;
+let currentCharId = 705;
 squares[currentCharId].classList.add('character');
 
 
@@ -74,13 +74,10 @@ function shooting(direction, newId) {
       break; 
   }
 
-  
-  
-
   const startTime = new Date().getTime();
   const bulletmove = setInterval(() => {
 
-    if (tab.includes(bulletId) || teleport.includes(bulletId))  {
+    if (tab.includes(bulletId) || teleport.includes(bulletId) || currentCharId == bulletId)  {
       squares[bulletId].classList.remove('bullet')
       return;
     }
@@ -155,4 +152,3 @@ document.addEventListener('keydown', charMove);
 
 draw(); // Function to creat a red blocks
 teleportDraw(); // Function to create teleportation blocks
-
