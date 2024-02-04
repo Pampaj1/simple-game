@@ -50,3 +50,20 @@ div .color {
 div .bullet {
   background-color: yellow;
 }
+
+div .sign {
+  background-image: url('images/sign.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+
+}
+
+.sign.show::after {
+  content: 'TIPS FOR GAME!';
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  top: 20;
+}

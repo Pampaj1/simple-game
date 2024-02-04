@@ -22,6 +22,15 @@ let currentCharId = 705;
 squares[currentCharId].classList.add('character');
 
 
+// Sign
+let signId = 825;
+let collisionId = [794, 795, 796, 824, 854, 855, 826, 856]
+squares[signId].classList.add('sign')
+const sign = document.querySelector('div.sign')
+
+
+
+
 // TELPORTATION SECTION
 const teleport = [449, 14];
 
@@ -51,13 +60,13 @@ function teleport1() {
 let direction = 'right'; // variable needed to check the shoot direction 
 
 function shooting(direction, newId) {
-
+  
   let bulletId = newId;
   let bulletDire = '';
  
   switch (direction) {
     case 'left':
-      if (bulletId % width !==0) bulletId -= 1;
+      bulletId -= 1;
       bulletDire = 'x';
       break;
     case 'right':
@@ -74,16 +83,17 @@ function shooting(direction, newId) {
       break; 
   }
 
-  const startTime = new Date().getTime();
+  squares[bulletId].classList.add('bullet')
   const bulletmove = setInterval(() => {
-
-    if (tab.includes(bulletId) || teleport.includes(bulletId) || currentCharId == bulletId)  {
-      squares[bulletId].classList.remove('bullet')
+    squares[bulletId].classList.remove('bullet')
+    // if the bullet collides with any object it disappears
+    if (tab.includes(bulletId) 
+    || teleport.includes(bulletId) 
+    || currentCharId == bulletId 
+    || signId == bulletId) {
       return;
     }
 
-    squares[bulletId].classList.remove('bullet')
-    squares[bulletId].removeAttribute('class')
     if (bulletDire == 'x') {
       bulletId -= 1;
     } else if (bulletDire == 'y') {
@@ -93,17 +103,14 @@ function shooting(direction, newId) {
     } else {
       bulletId += 30;
     }
-    squares[bulletId].classList.add('bullet')
     
-    const currentTime = new Date().getTime();
-    const endTime = startTime + 1000;
-
-    if (currentTime >= endTime) {
-      clearInterval(bulletmove);
-      squares[bulletId].classList.remove('bullet')
-      squares[bulletId].removeAttribute('class')
-    }
+    squares[bulletId].classList.add('bullet')
   }, 50)
+
+  setTimeout(() => {
+    clearInterval(bulletmove);
+    squares[bulletId].classList.remove('bullet')
+  }, 1000)
 }
 
 
@@ -134,7 +141,7 @@ function charMove(e) {
       break;
   }
 
-  if (tab.includes(newId)) return;
+  if (tab.includes(newId) || newId == signId) return;
   if (newId == teleport[0]) {
     teleport0()
     return;
@@ -143,6 +150,16 @@ function charMove(e) {
     teleport1()
     return;
   }
+
+  sign.classList.remove('show')
+
+  collisionId.map(element => {
+    if (newId === element) {
+      sign.classList.add('show')
+      return;
+    }
+  })
+  
   squares[currentCharId].classList.remove('character');
   squares[currentCharId].removeAttribute('class');
   currentCharId = newId;
