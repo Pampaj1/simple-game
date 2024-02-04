@@ -46,10 +46,9 @@ function teleport1() {
 }
 
 
-// SHOOTING SESION
-// pozycja postaci, kierunek strzalu, nowa klasa dla strzalu, to ze strzal zmienia odpowiednio id w czasie
 
-let direction = 'right';
+// SHOOTING SESION
+let direction = 'right'; // variable needed to check the shoot direction 
 
 function shooting(direction, newId) {
 
@@ -75,11 +74,16 @@ function shooting(direction, newId) {
       break; 
   }
 
+  
+  
+
   const startTime = new Date().getTime();
   const bulletmove = setInterval(() => {
 
-    const currentTime = new Date().getTime();
-    const endTime = startTime + 1000;
+    if (tab.includes(bulletId) || teleport.includes(bulletId))  {
+      squares[bulletId].classList.remove('bullet')
+      return;
+    }
 
     squares[bulletId].classList.remove('bullet')
     squares[bulletId].removeAttribute('class')
@@ -93,6 +97,9 @@ function shooting(direction, newId) {
       bulletId += 30;
     }
     squares[bulletId].classList.add('bullet')
+    
+    const currentTime = new Date().getTime();
+    const endTime = startTime + 1000;
 
     if (currentTime >= endTime) {
       clearInterval(bulletmove);
