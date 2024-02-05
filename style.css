@@ -56,14 +56,14 @@ div .sign {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  display: inline-block;
-
+  position: relative;
 }
 
 .sign.show::after {
   content: 'TIPS FOR GAME!';
   position: absolute;
+  top: -50px;
+  left: -40px;
   width: 150px;
-  text-align: center;
-  top: 20;
+  height: 50px;
 }
