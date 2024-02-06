@@ -63,7 +63,8 @@ function shooting(direction, newId) {
   
   let bulletId = newId;
   let bulletDire = '';
- 
+  const bullet = document.querySelector('.bullet')
+  
   switch (direction) {
     case 'left':
       bulletId -= 1;
@@ -82,7 +83,7 @@ function shooting(direction, newId) {
       bulletDire = 'c';
       break; 
   }
-
+  // create bullet which change position in selected direction
   squares[bulletId].classList.add('bullet')
   const bulletmove = setInterval(() => {
     squares[bulletId].classList.remove('bullet')
@@ -93,7 +94,7 @@ function shooting(direction, newId) {
     || signId == bulletId) {
       return;
     }
-
+    
     if (bulletDire == 'x') {
       bulletId -= 1;
     } else if (bulletDire == 'y') {
@@ -106,7 +107,7 @@ function shooting(direction, newId) {
     
     squares[bulletId].classList.add('bullet')
   }, 50)
-
+  // removing bullet after 1s
   setTimeout(() => {
     clearInterval(bulletmove);
     squares[bulletId].classList.remove('bullet')

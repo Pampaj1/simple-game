@@ -60,7 +60,7 @@ div .sign {
 }
 
 .sign.show::after {
-  content: 'TIPS FOR GAME!';
+  content: 'CHOOSE A SKIN!';
   position: absolute;
   top: -50px;
   left: -40px;
