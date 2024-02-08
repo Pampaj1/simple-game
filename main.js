@@ -29,7 +29,29 @@ squares[signId].classList.add('sign')
 const sign = document.querySelector('div.sign')
 
 
+// CHANGE BULLET COLOR SECTION
+let redBullet = 857;
+squares[redBullet].classList.add('red-skin')
+let yellowBullet = 853;
+squares[yellowBullet].classList.add('yellow-skin')
+let blueBullet = 859;
+squares[blueBullet].classList.add('blue-skin')
 
+function changeColor(color) {
+  const bullet = document.querySelector('.bullet')
+
+  switch (color) {
+    case 'red':
+      bullet.style.backgroundColor = 'red'
+      break;
+    case 'yellow':
+      bullet.style.backgroundColor = 'yellow'
+      break;
+    case 'blue':
+      bullet.style.backgroundColor = 'blue'
+      break;
+  }
+}
 
 // TELPORTATION SECTION
 const teleport = [449, 14];
@@ -43,27 +65,30 @@ function teleportDraw() {
 function teleport0() {
   squares[currentCharId].classList.remove('character');
   squares[currentCharId].removeAttribute('class');
-  currentCharId = teleport[1] + 30; // plus 30 is needed for the character to appear under the teleportation block
+  // plus 30 is needed for the character to appear under the teleportation block
+  currentCharId = teleport[1] + 30; 
   squares[currentCharId].classList.add('character');
 }
 
 function teleport1() {
   squares[currentCharId].classList.remove('character');
   squares[currentCharId].removeAttribute('class');
-  currentCharId = teleport[0] - 1; // minus 1 is needed for the character to appear next the teleportation block on the left side
+  // minus 1 is needed for the character to appear next the teleportation block on the left side
+  currentCharId = teleport[0] - 1; 
   squares[currentCharId].classList.add('character');
 }
 
 
 
 // SHOOTING SESION
-let direction = 'right'; // variable needed to check the shoot direction 
+// variable needed to check the shoot direction
+let direction = 'right';  
 
 function shooting(direction, newId) {
   
   let bulletId = newId;
   let bulletDire = '';
-  const bullet = document.querySelector('.bullet')
+  let color = '';
   
   switch (direction) {
     case 'left':
@@ -83,6 +108,9 @@ function shooting(direction, newId) {
       bulletDire = 'c';
       break; 
   }
+
+  
+
   // create bullet which change position in selected direction
   squares[bulletId].classList.add('bullet')
   const bulletmove = setInterval(() => {
@@ -141,8 +169,9 @@ function charMove(e) {
       shooting(direction, newId)
       break;
   }
-
-  if (tab.includes(newId) || newId == signId) return;
+  
+  
+  if (tab.includes(newId) || newId == signId || newId == redBullet || newId == yellowBullet || newId == blueBullet) return;
   if (newId == teleport[0]) {
     teleport0()
     return;

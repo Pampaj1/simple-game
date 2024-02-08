@@ -60,10 +60,22 @@ div .sign {
 }
 
 .sign.show::after {
-  content: 'CHOOSE A SKIN!';
+  content: 'CHOOSE A LASER COLOR!';
   position: absolute;
   top: -50px;
-  left: -40px;
-  width: 150px;
+  left: -70px;
+  width: 250px;
   height: 50px;
+}
+
+.red-skin {
+  background-color: red;
+}
+
+.yellow-skin {
+  background-color: yellow;
+}
+
+.blue-skin {
+  background-color: blue;
 }
