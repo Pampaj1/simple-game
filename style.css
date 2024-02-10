@@ -28,10 +28,6 @@ div .color {
   background-size: cover;
 }
 
-.teleport {
-  background-color: blue;
-}
-
 .character {
   background-image: url('images/character.png');
   background-repeat: no-repeat;
@@ -47,8 +43,16 @@ div .color {
   transform: scaleX(-1);
 }
 
+div .target {
+  background-color: red;
+}
+
 div .bullet {
   background-color: yellow;
+}
+
+div .teleport {
+  background-color: blue;
 }
 
 div .sign {
@@ -60,22 +64,21 @@ div .sign {
 }
 
 .sign.show::after {
-  content: 'CHOOSE A LASER COLOR!';
+  content: 'SHOOT TO THE RED TARGET!';
   position: absolute;
   top: -50px;
-  left: -70px;
+  left: -60px;
   width: 250px;
   height: 50px;
 }
 
-.red-skin {
-  background-color: red;
-}
-
-.yellow-skin {
-  background-color: yellow;
-}
-
-.blue-skin {
-  background-color: blue;
+.counter {
+  position: absolute;
+  z-index: 1000;
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  margin: 50px;
+  top: 350px;
+  right: 0;
 }

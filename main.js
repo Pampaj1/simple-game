@@ -23,13 +23,40 @@ squares[currentCharId].classList.add('character');
 
 
 // Sign
+
+// Spawn positon for the sign object
 let signId = 825;
 let collisionId = [794, 795, 796, 824, 854, 855, 826, 856]
 squares[signId].classList.add('sign')
 const sign = document.querySelector('div.sign')
 
 
+// Target
+
+// Spawn positon for the target object
+let targetId = 375; 
+squares[targetId].classList.add('target')
+
+// Target hit counter
+let counter = 0;
+const hitCounter = document.querySelector('.hit-counter')
+
+// Function that allow to hit and respawn a target and add 1 point to the target hit counter
+function targetHit(bulletId) {
+
+  if (targetId === bulletId) {
+    squares[targetId].classList.remove('target')
+    counter += 1;
+    hitCounter.innerHTML = counter;
+    setTimeout(() => {
+      squares[targetId].classList.add('target')
+    }, 1500)
+  }
+}
+
 // TELPORTATION SECTION
+
+// Spawn positon for the teleports objects
 const teleport = [449, 14];
 
 function teleportDraw() {
@@ -89,6 +116,7 @@ function shooting(direction, newId) {
   squares[bulletId].classList.add('bullet')
   
   const bulletmove = setInterval(() => {
+    
     squares[bulletId].classList.remove('bullet')
     // if the bullet collides with any object it disappears
     if (tab.includes(bulletId) 
@@ -107,10 +135,13 @@ function shooting(direction, newId) {
     } else {
       bulletId += 30;
     }
+
+    // Function that allow to hit and respawn a target
+    targetHit(bulletId) 
     
     squares[bulletId].classList.add('bullet')
   }, 50)
-  
+
   // removing bullet after 1s
   setTimeout(() => {
     clearInterval(bulletmove);
