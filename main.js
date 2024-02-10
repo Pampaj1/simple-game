@@ -29,30 +29,6 @@ squares[signId].classList.add('sign')
 const sign = document.querySelector('div.sign')
 
 
-// CHANGE BULLET COLOR SECTION
-let redBullet = 857;
-squares[redBullet].classList.add('red-skin')
-let yellowBullet = 853;
-squares[yellowBullet].classList.add('yellow-skin')
-let blueBullet = 859;
-squares[blueBullet].classList.add('blue-skin')
-
-function changeColor(color) {
-  const bullet = document.querySelector('.bullet')
-
-  switch (color) {
-    case 'red':
-      bullet.style.backgroundColor = 'red'
-      break;
-    case 'yellow':
-      bullet.style.backgroundColor = 'yellow'
-      break;
-    case 'blue':
-      bullet.style.backgroundColor = 'blue'
-      break;
-  }
-}
-
 // TELPORTATION SECTION
 const teleport = [449, 14];
 
@@ -88,7 +64,7 @@ function shooting(direction, newId) {
   
   let bulletId = newId;
   let bulletDire = '';
-  let color = '';
+  
   
   switch (direction) {
     case 'left':
@@ -109,10 +85,9 @@ function shooting(direction, newId) {
       break; 
   }
 
-  
-
   // create bullet which change position in selected direction
   squares[bulletId].classList.add('bullet')
+  
   const bulletmove = setInterval(() => {
     squares[bulletId].classList.remove('bullet')
     // if the bullet collides with any object it disappears
@@ -135,6 +110,7 @@ function shooting(direction, newId) {
     
     squares[bulletId].classList.add('bullet')
   }, 50)
+  
   // removing bullet after 1s
   setTimeout(() => {
     clearInterval(bulletmove);
@@ -169,9 +145,16 @@ function charMove(e) {
       shooting(direction, newId)
       break;
   }
+
+  if (newId == 857) {
+    color = 'red';
+  } else if (newId == 853) {
+    color = 'yellow'; 
+  } else if (newId == 859) {
+    color = 'blue';
+  }
   
-  
-  if (tab.includes(newId) || newId == signId || newId == redBullet || newId == yellowBullet || newId == blueBullet) return;
+  if (tab.includes(newId) || newId == signId) return;
   if (newId == teleport[0]) {
     teleport0()
     return;
